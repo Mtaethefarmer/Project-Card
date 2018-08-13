@@ -187,9 +187,9 @@ text = "RESET"
 flat = false
 align = 1
 
-[connection signal="house_turn" from="." to="House" method="_on_BlackJack_World_house_turn"]
-
 [connection signal="house_turn" from="." to="UI" method="_on_BlackJack_World_house_turn"]
+
+[connection signal="house_turn" from="." to="House" method="_on_BlackJack_World_house_turn"]
 
 [connection signal="isDone" from="House" to="." method="_on_House_isDone"]
 
@@ -203,16 +203,16 @@ align = 1
 
 [connection signal="pressed" from="UI/Hit Me Btn" to="Player/Hand" method="hit_me"]
 
-[connection signal="pressed" from="UI/Stand Btn" to="." method="_on_Stand_Btn_pressed"]
-
 [connection signal="pressed" from="UI/Stand Btn" to="UI" method="_on_Stand_Btn_pressed"]
 
+[connection signal="pressed" from="UI/Stand Btn" to="." method="_on_Stand_Btn_pressed"]
+
 [connection signal="pressed" from="UI/Clear Hand Btn" to="Player/Hand" method="empty"]
+
+[connection signal="pressed" from="UI/Reset Btn" to="UI" method="_on_Reset_Btn_pressed"]
 
 [connection signal="pressed" from="UI/Reset Btn" to="House/Hand" method="empty"]
 
 [connection signal="pressed" from="UI/Reset Btn" to="Player/Hand" method="reset"]
-
-[connection signal="pressed" from="UI/Reset Btn" to="UI" method="_on_Reset_Btn_pressed"]
 
 

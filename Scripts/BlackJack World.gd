@@ -1,5 +1,6 @@
 extends Node
 
+#Determines who turn it is
 enum TURN {PLAYER, HOUSE}
 
 enum STATE {IN_ST, TWENTYONE_ST, BUST_ST, BLACKJACK_ST}
