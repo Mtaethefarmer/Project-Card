@@ -1,0 +1,218 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/BlackJack World.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/House.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Hand.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Deck.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=5]
+[ext_resource path="res://Fonts/hartland.ttf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=2]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Settings" ]
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 20
+use_mipmaps = false
+use_filter = true
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=4]
+
+size = 20
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 6 )
+_sections_unfolded = [ "Font" ]
+
+[node name="BlackJack World" type="Node" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="House" type="Node" parent="." index="0"]
+
+script = ExtResource( 2 )
+
+[node name="Hand" parent="House" index="0" instance=ExtResource( 3 )]
+
+margin_left = 389.0
+margin_top = 33.0
+margin_right = 539.0
+margin_bottom = 183.0
+
+[node name="Deck" parent="House" index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 301.468, 135.661 )
+
+[node name="Player" type="Node" parent="." index="1"]
+
+[node name="Hand" parent="Player" index="0" instance=ExtResource( 3 )]
+
+margin_top = 380.0
+margin_bottom = 530.0
+
+[node name="UI" type="HBoxContainer" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 283.0
+margin_top = 253.0
+margin_right = 702.0
+margin_bottom = 357.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+script = ExtResource( 5 )
+
+[node name="Hit Me Btn" type="Button" parent="UI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 175.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "HIT"
+flat = false
+align = 1
+_sections_unfolded = [ "Size Flags", "custom_fonts" ]
+
+[node name="Stand Btn" type="Button" parent="UI" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 179.0
+margin_right = 354.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "STAND"
+flat = false
+align = 1
+_sections_unfolded = [ "Size Flags", "custom_fonts" ]
+
+[node name="Clear Hand Btn" type="Button" parent="UI" index="2"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 358.0
+margin_right = 419.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 3 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "CLEAR"
+flat = false
+align = 1
+_sections_unfolded = [ "custom_fonts" ]
+
+[node name="Reset Btn" type="Button" parent="UI" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 358.0
+margin_right = 419.0
+margin_bottom = 104.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 4 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "RESET"
+flat = false
+align = 1
+
+[connection signal="house_turn" from="." to="House" method="_on_BlackJack_World_house_turn"]
+
+[connection signal="house_turn" from="." to="UI" method="_on_BlackJack_World_house_turn"]
+
+[connection signal="isDone" from="House" to="." method="_on_House_isDone"]
+
+[connection signal="hit" from="House/Hand" to="House/Deck" method="_on_Hand_hit"]
+
+[connection signal="reset" from="House/Hand" to="House" method="_on_Hand_reset"]
+
+[connection signal="hit" from="Player/Hand" to="House/Deck" method="_on_Hand_hit"]
+
+[connection signal="reset" from="Player/Hand" to="House/Deck" method="_on_Hand_reset"]
+
+[connection signal="pressed" from="UI/Hit Me Btn" to="Player/Hand" method="hit_me"]
+
+[connection signal="pressed" from="UI/Stand Btn" to="." method="_on_Stand_Btn_pressed"]
+
+[connection signal="pressed" from="UI/Stand Btn" to="UI" method="_on_Stand_Btn_pressed"]
+
+[connection signal="pressed" from="UI/Clear Hand Btn" to="Player/Hand" method="empty"]
+
+[connection signal="pressed" from="UI/Reset Btn" to="House/Hand" method="empty"]
+
+[connection signal="pressed" from="UI/Reset Btn" to="Player/Hand" method="reset"]
+
+[connection signal="pressed" from="UI/Reset Btn" to="UI" method="_on_Reset_Btn_pressed"]
+
+
